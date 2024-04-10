@@ -158,8 +158,3 @@ class _AddAlaramState extends State<AddAlarm> {
     Navigator.pop(context);
   }
 }
-
-BoxDecoration bottomSheetDecoration = const BoxDecoration(
-    color: Colors.white,
-    borderRadius: BorderRadius.only(
-        topLeft: Radius.circular(16.0), topRight: Radius.circular(16.0)));

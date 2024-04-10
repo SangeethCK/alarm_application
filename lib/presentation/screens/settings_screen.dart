@@ -1,4 +1,5 @@
 import 'package:alarm_applications/application/home_notifier.dart';
+import 'package:alarm_applications/core/constant/sizes.dart';
 import 'package:alarm_applications/presentation/widgets/appbar/appbar.dart';
 import 'package:alarm_applications/presentation/widgets/padding/main_padding.dart';
 import 'package:flutter/material.dart';
@@ -27,15 +28,22 @@ class SettingsScreen extends StatelessWidget {
                       'assets/icons/weather-app.png',
                       height: 105,
                     ),
+                    kHeight10,
+                    Text(
+                      value.weatherData?.name ?? '',
+                      style: const TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 24),
+                    ),
+                    kHeight10,
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         const Text(
-                          'Status : ',
+                          'Status :  ',
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 24),
                         ),
-                        const SizedBox(width: 15),
+                        kHeight15,
                         Text(
                           value.weatherData?.weather?[index].main ?? '',
                           style: const TextStyle(
@@ -43,16 +51,17 @@ class SettingsScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                    const SizedBox(height: 10),
+                    kHeight10,
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
+                        kHeight10,
                         const Text(
-                          'Desc : ',
+                          'Description : ',
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 24),
                         ),
-                        const SizedBox(width: 10),
+                        kHeight10,
                         Text(
                           value.weatherData?.weather?[index].description ?? '',
                           style: const TextStyle(

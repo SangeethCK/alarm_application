@@ -7,3 +7,5 @@ TextStyle subHead =
 TextStyle labelStyle = const TextStyle(
     color: Colors.black87, fontWeight: FontWeight.bold, fontSize: 23);
 TextStyle statusStyle = const TextStyle(fontWeight: FontWeight.bold);
+
+TextStyle dateStyle = const TextStyle(color: Colors.black87, fontSize: 23);

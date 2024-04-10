@@ -65,34 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
         body: MainPadding(
           child: ListView(
             children: [
-              Container(
-                decoration: const BoxDecoration(
-                    color: Colors.deepPurpleAccent,
-                    borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(30),
-                        bottomRight: Radius.circular(30))),
-                height: MediaQuery.of(context).size.height * 0.1,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      DateFormat.yMEd().add_jms().format(
-                            DateTime.now(),
-                          ),
-                      style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
-                          color: Colors.white),
-                    ),
-                    kWidth20,
-                    Text(
-                      context.read<HomeNotifier>().weatherData?.name ?? '',
-                      style: const TextStyle(
-                          fontWeight: FontWeight.bold, color: Colors.white),
-                    ),
-                  ],
-                ),
-              ),
+              _timeRunningAndWeather(context),
               kHeight10,
               const Text(
                 'Your Alarm',
@@ -121,4 +94,32 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ));
   }
+}
+
+Widget _timeRunningAndWeather(BuildContext context) {
+  return Container(
+    decoration: const BoxDecoration(
+        color: Colors.deepPurpleAccent,
+        borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(30), bottomRight: Radius.circular(30))),
+    height: MediaQuery.of(context).size.height * 0.1,
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(
+          DateFormat.yMEd().add_jms().format(
+                DateTime.now(),
+              ),
+          style: const TextStyle(
+              fontWeight: FontWeight.bold, fontSize: 16, color: Colors.white),
+        ),
+        kWidth20,
+        Text(
+          context.read<HomeNotifier>().weatherData?.name ?? '',
+          style:
+              const TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+        ),
+      ],
+    ),
+  );
 }

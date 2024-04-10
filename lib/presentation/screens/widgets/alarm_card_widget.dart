@@ -3,6 +3,7 @@ import 'package:alarm_applications/core/constant/style.dart';
 import 'package:alarm_applications/models/models.dart';
 import 'package:alarm_applications/presentation/screens/widgets/add_alarm_screen.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -69,13 +70,13 @@ class AlarmCardWidget extends StatelessWidget {
             children: [
               Text(
                 DateFormat.jm().format(alaram.dateTime ?? DateTime.now()),
-                style: titleStyle,
+                style: dateStyle,
               ),
               Consumer<HomeNotifier>(
                 builder: (context, value, child) {
                   return Transform.scale(
                     scale: 0.8,
-                    child: Switch(
+                    child: CupertinoSwitch(
                       activeColor: Colors.deepPurpleAccent,
                       value: (alaram.milliseconds! <
                               DateTime.now().microsecondsSinceEpoch)
@@ -84,7 +85,6 @@ class AlarmCardWidget extends StatelessWidget {
                       onChanged: (v) {
                         onChanged(v);
                       },
-                      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     ),
                   );
                 },

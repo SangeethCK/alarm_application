@@ -43,7 +43,6 @@ class HomeNotifier extends ChangeNotifier {
     modelist[index].check = check;
     notifyListeners();
   }
-
 //=-=-=-= Selected Swicth =-=-=
 
   changeSelected(bool value) {
