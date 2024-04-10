@@ -36,7 +36,7 @@ class AppbarWidget extends StatelessWidget implements PreferredSizeWidget {
       leadingWidth: logo ? 22.w : null,
       shape: Border(
           bottom: BorderSide(
-              color: shadow ? kBlack26 : kTransparentColor, width: 0.25)),
+              color: shadow ? Colors.black87 : kTransparentColor, width: 0.25)),
       leading: hideLeading
           ? kNone
           : Navigator.canPop(context)

@@ -211,6 +211,8 @@ class HomeNotifier extends ChangeNotifier {
     }
   }
 
+  
+
   //=-=-=-= Permission Handler =-=-=-=
 
   Future<void> permission() async {

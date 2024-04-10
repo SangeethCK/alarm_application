@@ -1,4 +1,5 @@
 import 'package:alarm_applications/application/home_notifier.dart';
+import 'package:alarm_applications/core/constant/style.dart';
 import 'package:alarm_applications/models/models.dart';
 import 'package:alarm_applications/presentation/screens/widgets/add_alarm_screen.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
@@ -16,7 +17,7 @@ class AlarmCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(8),
+      padding: const EdgeInsets.all(10),
       margin: const EdgeInsets.all(8),
       decoration: BoxDecoration(
         color: const Color(0xfffefeff),
@@ -32,10 +33,7 @@ class AlarmCardWidget extends StatelessWidget {
                 flex: 0,
                 child: Text(
                   '${alaram.label}',
-                  style: const TextStyle(
-                      color: Colors.black87,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 23),
+                  style: labelStyle,
                 ),
               ),
               const Spacer(),
@@ -71,10 +69,7 @@ class AlarmCardWidget extends StatelessWidget {
             children: [
               Text(
                 DateFormat.jm().format(alaram.dateTime ?? DateTime.now()),
-                style: const TextStyle(
-                  fontSize: 22,
-                  color: Colors.black87,
-                ),
+                style: titleStyle,
               ),
               Consumer<HomeNotifier>(
                 builder: (context, value, child) {
@@ -98,9 +93,7 @@ class AlarmCardWidget extends StatelessWidget {
           ),
           Text(
             alaram.when ?? '',
-            style: const TextStyle(
-              color: Colors.black87,
-            ),
+            style: subHead,
           ),
         ],
       ),

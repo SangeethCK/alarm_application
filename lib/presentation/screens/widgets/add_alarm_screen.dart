@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:alarm_applications/application/home_notifier.dart';
 import 'package:alarm_applications/core/constant/sizes.dart';
+import 'package:alarm_applications/core/constant/style.dart';
 import 'package:alarm_applications/models/models.dart';
 import 'package:alarm_applications/presentation/widgets/appbar/appbar.dart';
 import 'package:alarm_applications/presentation/widgets/padding/main_padding.dart';
@@ -45,19 +46,17 @@ class _AddAlaramState extends State<AddAlarm> {
                       itemBuilder: (context, index) {
                         return Row(
                           children: [
-                            Text(context
-                                    .read<HomeNotifier>()
-                                    .weatherData
-                                    ?.weather?[index]
-                                    .main ??
-                                ''),
+                            const Text('Status :'),
                             kWidth10,
-                            Text(context
-                                    .read<HomeNotifier>()
-                                    .weatherData
-                                    ?.weather?[index]
-                                    .description ??
-                                ''),
+                            Text(
+                              context
+                                      .read<HomeNotifier>()
+                                      .weatherData
+                                      ?.weather?[index]
+                                      .description ??
+                                  '',
+                              style: statusStyle,
+                            ),
                           ],
                         );
                       }),
@@ -68,13 +67,12 @@ class _AddAlaramState extends State<AddAlarm> {
         ],
       ),
       body: MainPadding(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: ListView(
+          shrinkWrap: true,
           children: [
             Consumer<HomeNotifier>(
               builder: (context, value, child) => SizedBox(
-                height: MediaQuery.of(context).size.height * 0.3,
+                height: MediaQuery.of(context).size.height * 0.5,
                 width: MediaQuery.of(context).size.width,
                 child: Center(
                   child: CupertinoDatePicker(
@@ -90,24 +88,25 @@ class _AddAlaramState extends State<AddAlarm> {
                 ),
               ),
             ),
-            const Text('Title'),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: SizedBox(
-                width: MediaQuery.of(context).size.width,
-                child: CupertinoTextField(
-                  placeholder: "Add Label",
-                  controller: context.read<HomeNotifier>().controller,
-                ),
+            const Text(
+              'Title',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            kHeight15,
+            SizedBox(
+              width: MediaQuery.of(context).size.width,
+              child: CupertinoTextField(
+                placeholder: "Add Label",
+                controller: context.read<HomeNotifier>().controller,
               ),
             ),
+            kHeight15,
             Row(
               children: [
-                const Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Text(" Repeat daily"),
-                ),
+                const Text("Repeat daily"),
+                kWidth18,
                 CupertinoSwitch(
+                  activeColor: Colors.deepPurpleAccent,
                   value: context.watch<HomeNotifier>().repeat,
                   onChanged: (bool value) {
                     context.read<HomeNotifier>().changeSelected(value);
@@ -159,3 +158,8 @@ class _AddAlaramState extends State<AddAlarm> {
     Navigator.pop(context);
   }
 }
+
+BoxDecoration bottomSheetDecoration = const BoxDecoration(
+    color: Colors.white,
+    borderRadius: BorderRadius.only(
+        topLeft: Radius.circular(16.0), topRight: Radius.circular(16.0)));

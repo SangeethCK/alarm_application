@@ -1,3 +1,5 @@
+// ignore_for_file: unused_local_variable
+
 import 'package:alarm_applications/core/routes/routes.dart';
 import 'package:alarm_applications/presentation/screens/home_screen.dart';
 import 'package:alarm_applications/presentation/screens/settings_screen.dart';
