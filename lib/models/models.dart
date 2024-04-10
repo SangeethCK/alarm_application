@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:intl/intl.dart';
 
 class AlarmResponse {
@@ -44,7 +46,7 @@ DateTime? _parseDateTime(String? dateTimeString) {
     // Modify the format string according to your date-time format
     return DateFormat("dd/MM/yyyy HH:mm:ss").parse(dateTimeString);
   } catch (e) {
-    print("Error parsing date-time: $e");
+    log("Error parsing date-time: $e");
     return null;
   }
 }

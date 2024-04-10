@@ -1,4 +1,3 @@
-
 import 'package:alarm_applications/application/home_notifier.dart';
 import 'package:alarm_applications/presentation/widgets/appbar/appbar.dart';
 import 'package:alarm_applications/presentation/widgets/padding/main_padding.dart';

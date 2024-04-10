@@ -1,4 +1,5 @@
 import 'dart:math';
+
 import 'package:alarm_applications/application/home_notifier.dart';
 import 'package:alarm_applications/core/constant/sizes.dart';
 import 'package:alarm_applications/models/models.dart';
@@ -142,7 +143,7 @@ class _AddAlaramState extends State<AddAlarm> {
       final randomNumber = Random().nextInt(100);
       context.read<HomeNotifier>().setAlaram(
             context.read<HomeNotifier>().controller.text,
-            context.read<HomeNotifier>().selectedDate ?? DateTime.now(),
+            context.read<HomeNotifier>().selectedDate,
             context.read<HomeNotifier>().repeat,
             context.read<HomeNotifier>().name!,
             randomNumber,
