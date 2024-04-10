@@ -1,8 +1,9 @@
 import 'package:alarm_applications/application/home_notifier.dart';
+import 'package:alarm_applications/core/constant/assets.dart';
+import 'package:alarm_applications/core/constant/sizes.dart';
 import 'package:alarm_applications/core/constant/style.dart';
 import 'package:alarm_applications/models/models.dart';
 import 'package:alarm_applications/presentation/screens/widgets/add_alarm_screen.dart';
-import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -17,6 +18,7 @@ class AlarmCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final dateData = DateFormat('a').format(alaram.dateTime ?? DateTime.now());
     return Container(
       padding: const EdgeInsets.all(10),
       margin: const EdgeInsets.all(8),
@@ -37,6 +39,16 @@ class AlarmCardWidget extends StatelessWidget {
                   style: labelStyle,
                 ),
               ),
+              kWidth18,
+              dateData == 'AM'
+                  ? Image.asset(
+                      am,
+                      height: 50,
+                    )
+                  : Image.asset(
+                      pm,
+                      height: 50,
+                    ),
               const Spacer(),
               IconButton(
                   onPressed: () {
@@ -51,18 +63,11 @@ class AlarmCardWidget extends StatelessWidget {
                       ),
                     );
                   },
-                  icon: const Icon(
-                    FluentIcons.note_edit_24_filled,
+                  icon: Image.asset(
+                    'assets/icons/edit (1).png',
+                    height: 20,
                     color: Colors.deepPurpleAccent,
                   )),
-              IconButton(
-                  onPressed: () {
-                    context.read<HomeNotifier>().deleteAlarm(alaram.id ?? 0);
-                  },
-                  icon: const Icon(
-                    FluentIcons.delete_24_filled,
-                    color: Colors.red,
-                  ))
             ],
           ),
           Row(

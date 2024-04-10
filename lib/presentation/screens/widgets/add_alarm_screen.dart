@@ -79,7 +79,9 @@ class _AddAlaramState extends State<AddAlarm> {
                     showDayOfWeek: true,
                     minimumDate: DateTime.now(),
                     dateOrder: DatePickerDateOrder.dmy,
+                    initialDateTime: DateTime.now(),
                     onDateTimeChanged: (va) {
+                      print(va.toString());
                       context.read<HomeNotifier>().updateSelectedDate(va);
                       value.milliseconds = va.microsecondsSinceEpoch;
                       value.notificationtime = va;

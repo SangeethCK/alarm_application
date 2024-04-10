@@ -1,5 +1,7 @@
 import 'package:alarm_applications/application/home_notifier.dart';
+import 'package:alarm_applications/core/constant/assets.dart';
 import 'package:alarm_applications/core/constant/sizes.dart';
+import 'package:alarm_applications/core/constant/style.dart';
 import 'package:alarm_applications/presentation/widgets/appbar/appbar.dart';
 import 'package:alarm_applications/presentation/widgets/padding/main_padding.dart';
 import 'package:flutter/material.dart';
@@ -25,29 +27,26 @@ class SettingsScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Image.asset(
-                      'assets/icons/weather-app.png',
+                      weather,
                       height: 105,
                     ),
                     kHeight10,
                     Text(
                       value.weatherData?.name ?? '',
-                      style: const TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 24),
+                      style: textStyleFont24,
                     ),
                     kHeight10,
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Text(
+                        Text(
                           'Status :  ',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 24),
+                          style: textStyleFont24,
                         ),
                         kHeight15,
                         Text(
                           value.weatherData?.weather?[index].main ?? '',
-                          style: const TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 24),
+                          style: textStyleFont24,
                         ),
                       ],
                     ),
@@ -56,16 +55,11 @@ class SettingsScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         kHeight10,
-                        const Text(
-                          'Description : ',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 24),
-                        ),
+                        Text('Description : ', style: textStyleFont24),
                         kHeight10,
                         Text(
                           value.weatherData?.weather?[index].description ?? '',
-                          style: const TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 24),
+                          style: textStyleFont24,
                         ),
                       ],
                     ),

@@ -210,15 +210,21 @@ class HomeNotifier extends ChangeNotifier {
     }
   }
 
-  
-
   //=-=-=-= Permission Handler =-=-=-=
 
+  bool _isPermissionRequestInProgress = false;
+
   Future<void> permission() async {
-    if (await Permission.location.request().isGranted) {
+    if (_isPermissionRequestInProgress) {
+      return;
+    }
+    _isPermissionRequestInProgress = true;
+    var result = await Permission.location.request();
+    _isPermissionRequestInProgress = false;
+    if (result.isGranted) {
       fetchWeatherData();
     } else {
-      log('Why');
+      log('Permission not granted');
     }
   }
 }
