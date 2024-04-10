@@ -2,8 +2,7 @@ import 'dart:async';
 
 import 'package:alarm_applications/application/home_notifier.dart';
 import 'package:alarm_applications/core/constant/sizes.dart';
-import 'package:alarm_applications/presentation/screens/settings_screen.dart';
-import 'package:alarm_applications/presentation/screens/widgets/add_alarm_screen.dart';
+import 'package:alarm_applications/core/routes/routes.dart';
 import 'package:alarm_applications/presentation/screens/widgets/alarm_card_widget.dart';
 import 'package:alarm_applications/presentation/widgets/appbar/appbar.dart';
 import 'package:alarm_applications/presentation/widgets/padding/main_padding.dart';
@@ -30,7 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
     });
     super.initState();
     context.read<HomeNotifier>().getData();
-    context.read<HomeNotifier>().fetchWeatherData();
+    context.read<HomeNotifier>().permission();
   }
 
   @override
@@ -44,8 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
               shape: const CircleBorder(),
               onPressed: () {
                 context.read<HomeNotifier>().editAlaram(null);
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const AddAlarm()));
+                Navigator.pushNamed(context, add);
               },
               label: const Icon(
                 Icons.add,
@@ -59,9 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
           actions: [
             IconButton(
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (_) {
-                    return const SettingsScreen();
-                  }));
+                  Navigator.pushNamed(context, settings);
                 },
                 icon: const Icon(FluentIcons.settings_24_filled))
           ],

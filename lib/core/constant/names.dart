@@ -1,1 +1,1 @@
-const String appName = 'TG ECom';
+const String appName = 'Smart Alarm';

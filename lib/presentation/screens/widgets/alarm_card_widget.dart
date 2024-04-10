@@ -52,7 +52,10 @@ class AlarmCardWidget extends StatelessWidget {
                       ),
                     );
                   },
-                  icon: const Icon(FluentIcons.note_edit_24_filled)),
+                  icon: const Icon(
+                    FluentIcons.note_edit_24_filled,
+                    color: Colors.deepPurpleAccent,
+                  )),
               IconButton(
                   onPressed: () {
                     context.read<HomeNotifier>().deleteAlarm(alaram.id ?? 0);
@@ -79,7 +82,10 @@ class AlarmCardWidget extends StatelessWidget {
                     scale: 0.8,
                     child: Switch(
                       activeColor: Colors.deepPurpleAccent,
-                      value: true,
+                      value: (alaram.milliseconds! <
+                              DateTime.now().microsecondsSinceEpoch)
+                          ? false
+                          : alaram.check ?? false,
                       onChanged: (v) {
                         onChanged(v);
                       },

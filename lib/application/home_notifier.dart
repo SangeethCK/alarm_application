@@ -8,6 +8,7 @@ import 'package:alarm_applications/presentation/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:intl/intl.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:timezone/timezone.dart' as tz;
 
@@ -207,6 +208,16 @@ class HomeNotifier extends ChangeNotifier {
       notifyListeners();
     } finally {
       _isLoading = false;
+    }
+  }
+
+  //=-=-=-= Permission Handler =-=-=-=
+
+  Future<void> permission() async {
+    if (await Permission.location.request().isGranted) {
+      fetchWeatherData();
+    } else {
+      log('Why');
     }
   }
 }

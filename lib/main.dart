@@ -1,4 +1,7 @@
 import 'package:alarm_applications/application/home_notifier.dart';
+import 'package:alarm_applications/core/routes/navigator.dart';
+import 'package:alarm_applications/core/routes/route_generator.dart';
+import 'package:alarm_applications/core/routes/routes.dart';
 import 'package:alarm_applications/presentation/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -28,7 +31,10 @@ class MyApp extends StatelessWidget {
       child: ResponsiveSizer(
         builder: (p0, p1, p2) => MaterialApp(
           debugShowCheckedModeBanner: false,
-          title: 'Flutter Demo',
+          title: 'Alarm App',
+          initialRoute: home,
+          navigatorKey: navigatorKey,
+          onGenerateRoute: (settings) => RouteGenerator.generateRoute(settings),
           theme: ThemeData(
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
             useMaterial3: true,
