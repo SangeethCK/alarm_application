@@ -1,14 +1,14 @@
 import 'dart:async';
 import 'dart:developer';
 
+import 'package:alarm_applications/core/constant/base_url.dart';
 import 'package:dio/dio.dart';
 
 class NetworkProvider {
   final Dio _dio;
   NetworkProvider()
       : _dio = Dio(BaseOptions(
-            baseUrl: 'https://api.openweathermap.org/',
-            headers: {"Content-Type": "application/json"})) {
+            baseUrl: baseUrl, headers: {"Content-Type": "application/json"})) {
     _dio.interceptors.add(InterceptorsWrapper(
       onRequest: (options, handler) async {
         log('------------------------------------------------------------------------------------------------');

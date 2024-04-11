@@ -2,11 +2,11 @@ import 'package:alarm_applications/application/home_notifier.dart';
 import 'package:alarm_applications/core/constant/assets.dart';
 import 'package:alarm_applications/core/constant/sizes.dart';
 import 'package:alarm_applications/core/constant/style.dart';
-import 'package:alarm_applications/models/models.dart';
+import 'package:alarm_applications/core/constant/validations.dart';
+import 'package:alarm_applications/models/alaram_response.dart';
 import 'package:alarm_applications/presentation/screens/widgets/add_alarm_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class AlarmCardWidget extends StatelessWidget {
@@ -18,7 +18,7 @@ class AlarmCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final dateData = DateFormat('a').format(alaram.dateTime ?? DateTime.now());
+    String result = regex.stringMatch(alaram.dateTime ?? '') ?? '';
     return Container(
       padding: const EdgeInsets.all(10),
       margin: const EdgeInsets.all(8),
@@ -40,7 +40,7 @@ class AlarmCardWidget extends StatelessWidget {
                 ),
               ),
               kWidth18,
-              dateData == 'AM'
+              result == 'AM'
                   ? Image.asset(
                       am,
                       height: 50,
@@ -74,7 +74,7 @@ class AlarmCardWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                DateFormat.jm().format(alaram.dateTime ?? DateTime.now()),
+                '${alaram.dateTime}',
                 style: dateStyle,
               ),
               Consumer<HomeNotifier>(

@@ -1,13 +1,15 @@
 import 'dart:math';
 
 import 'package:alarm_applications/application/home_notifier.dart';
+import 'package:alarm_applications/core/constant/colors.dart';
 import 'package:alarm_applications/core/constant/sizes.dart';
 import 'package:alarm_applications/core/constant/style.dart';
-import 'package:alarm_applications/models/models.dart';
+import 'package:alarm_applications/models/alaram_response.dart';
 import 'package:alarm_applications/presentation/widgets/appbar/appbar.dart';
 import 'package:alarm_applications/presentation/widgets/padding/main_padding.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class AddAlarm extends StatefulWidget {
@@ -81,9 +83,9 @@ class _AddAlaramState extends State<AddAlarm> {
                     dateOrder: DatePickerDateOrder.dmy,
                     initialDateTime: DateTime.now(),
                     onDateTimeChanged: (va) {
-                      print(va.toString());
-                      context.read<HomeNotifier>().updateSelectedDate(va);
+                      value.dateTime = DateFormat().add_jms().format(va);
                       value.milliseconds = va.microsecondsSinceEpoch;
+
                       value.notificationtime = va;
                     },
                   ),
@@ -108,7 +110,7 @@ class _AddAlaramState extends State<AddAlarm> {
                 const Text("Repeat daily"),
                 kWidth18,
                 CupertinoSwitch(
-                  activeColor: Colors.deepPurpleAccent,
+                  activeColor: primaryColor,
                   value: context.watch<HomeNotifier>().repeat,
                   onChanged: (bool value) {
                     context.read<HomeNotifier>().changeSelected(value);
@@ -134,17 +136,19 @@ class _AddAlaramState extends State<AddAlarm> {
     if (widget.alarmToEdit != null) {
       final alarmToEdit = widget.alarmToEdit!;
       alarmToEdit.label = context.read<HomeNotifier>().controller.text;
-      alarmToEdit.dateTime = context.read<HomeNotifier>().selectedDate;
+      alarmToEdit.dateTime = context.read<HomeNotifier>().dateTime;
       alarmToEdit.check = context.read<HomeNotifier>().repeat;
       alarmToEdit.when = context.read<HomeNotifier>().name!;
       alarmToEdit.milliseconds = context.read<HomeNotifier>().milliseconds ?? 0;
       context.read<HomeNotifier>().setData();
+
+      print(alarmToEdit.toJson());
     } else {
       //==-=-=-=-=-=-= If creating a new alarm =-=-=-=-=
       final randomNumber = Random().nextInt(100);
       context.read<HomeNotifier>().setAlaram(
             context.read<HomeNotifier>().controller.text,
-            context.read<HomeNotifier>().selectedDate,
+            context.read<HomeNotifier>().dateTime ?? '',
             context.read<HomeNotifier>().repeat,
             context.read<HomeNotifier>().name!,
             randomNumber,

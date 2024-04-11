@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:alarm_applications/infrastructure/home_repository.dart';
-import 'package:alarm_applications/models/models.dart';
+import 'package:alarm_applications/models/alaram_response.dart';
 import 'package:alarm_applications/models/weather_response.dart';
 import 'package:alarm_applications/presentation/screens/home_screen.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +26,7 @@ class HomeNotifier extends ChangeNotifier {
   int? milliseconds;
 
 //=-=-=-=-=-= Set Alarams =-=-=-=-=-=-=
-  setAlaram(String label, DateTime dateTime, bool check, String repeat, int id,
+  setAlaram(String label, String dateTime, bool check, String repeat, int id,
       int milliseconds) {
     modelist.add(AlarmResponse(
         label: label,
@@ -35,6 +35,8 @@ class HomeNotifier extends ChangeNotifier {
         when: repeat,
         id: id,
         milliseconds: milliseconds));
+
+    log("$modelist");
     notifyListeners();
   }
 
@@ -51,28 +53,16 @@ class HomeNotifier extends ChangeNotifier {
     notifyListeners();
   }
 
-  DateTime _selectedDate = DateTime.now();
-
-  //=-=-=-=-= Getter for selected date =-=-=-=-=-=
-  DateTime get selectedDate => _selectedDate;
-
-  void updateSelectedDate(DateTime newDate) {
-    _selectedDate = newDate;
-    notifyListeners();
-  }
-
   //=-=-=-=-= Edit Alarams =-=-=-=-=-=
   editAlaram(AlarmResponse? alaram) {
     if (alaram != null) {
       controller.text = alaram.label ?? '';
-      _selectedDate = alaram.dateTime != null
-          ? alaram.dateTime ?? DateTime.now()
-          : DateTime.now();
+      dateTime = alaram.dateTime != null ? alaram.dateTime ?? '' : '';
       repeat = alaram.check ?? false;
       milliseconds = alaram.milliseconds;
     } else {
       controller.clear();
-      _selectedDate = DateTime.now();
+      dateTime = '';
       repeat = false;
     }
     notifyListeners();
@@ -91,6 +81,7 @@ class HomeNotifier extends ChangeNotifier {
       notifyListeners();
     }
   }
+
 //=-=-=-=-=-= Set Data =-=-=-=-=
 
   setData() {

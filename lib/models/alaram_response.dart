@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 
 class AlarmResponse {
   String? label;
-  DateTime? dateTime;
+  String? dateTime;
   bool? check;
   String? when;
   int? id;
@@ -20,8 +20,9 @@ class AlarmResponse {
 
   factory AlarmResponse.fromJson(Map<String, dynamic> json) => AlarmResponse(
         label: json["label"],
-        dateTime:
-            json["dateTime"] != null ? _parseDateTime(json["dateTime"]) : null,
+        dateTime: json["dateTime"],
+        // dateTime:
+        //     json["dateTime"] != null ? _parseDateTime(json["dateTime"]) : null,
         check: json["check"],
         when: json["when"],
         id: json["id"],
@@ -30,7 +31,8 @@ class AlarmResponse {
 
   Map<String, dynamic> toJson() => {
         "label": label,
-        "dateTime": dateTime?.toIso8601String(),
+        // "dateTime": dateTime?.toIso8601String(),
+        "dateTime":dateTime,
         "check": check,
         "when": when,
         "id": id,
